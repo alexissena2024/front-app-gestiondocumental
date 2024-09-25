@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <div class="container mt-5">
       <h1 class="text-left text-danger">Página de Informes</h1>
@@ -7,23 +6,51 @@
       <h3>Formulario de Registro</h3>
       <form @submit.prevent="enviarFormulario">
         <div class="form-group">
-          <label>Nombre del Informe</label>
-          <input type="text" v-model="nombreInforme" ref="nominforme" class="form-control input-custom" required />
+          <label for="nombreInforme">Nombre del Informe</label>
+          <input
+            type="text"
+            id="nombreInforme"
+            v-model="nombreInforme"
+            ref="nominforme"
+            class="form-control input-custom"
+            required
+          />
         </div>
 
         <div class="form-group">
-          <label>Fecha Inicial</label>
-          <input type="date" v-model="fechainicial" class="form-control input-custom" required />
+          <label for="fechainicial">Fecha Inicial</label>
+          <input
+            type="date"
+            id="fechainicial"
+            v-model="fechainicial"
+            class="form-control input-custom"
+            required
+          />
         </div>
 
         <div class="form-group">
-          <label>Fecha Final</label>
-          <input type="date" v-model="fechafinal" class="form-control input-custom" required />
+          <label for="fechafinal">Fecha Final</label>
+          <input
+            type="date"
+            id="fechafinal"
+            v-model="fechafinal"
+            class="form-control input-custom"
+            required
+          />
         </div>
 
         <div class="form-group">
-          <label>Convertir PDF a Excel</label>
-          <input type="text" v-model="convertirpdf" class="form-control input-custom" required />
+          <label for="convertirpdf">Convertir PDF a Excel</label>
+          <select
+            id="convertirpdf"
+            v-model="convertirpdf"
+            class="form-control input-custom"
+            required
+          >
+            <option value="">Seleccione una opción</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+          </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -36,8 +63,10 @@
 </template>
 
 <script>
+import { nextTick } from 'vue';
+
 export default {
-  name: 'Informes',
+  name: 'informes',
   data() {
     return {
       nombreInforme: '',
@@ -54,7 +83,6 @@ export default {
       console.log('Fecha Inicial:', this.fechainicial);
       console.log('Fecha Final:', this.fechafinal);
       console.log('Convertir PDF:', this.convertirpdf);
-     
 
       this.mensajeExito = true;
 
@@ -71,14 +99,18 @@ export default {
       this.fechainicial = '';
       this.fechafinal = '';
       this.convertirpdf = '';
-      
-      // Enfocar el campo de cédula
-      this.$refs.nominforme.focus();
+
+      // Enfocar el campo de nombre informe
+      nextTick(() => {
+        this.$refs.nominforme.focus();
+      });
     },
   },
   mounted() {
-    // Establecer el foco en el campo de cédula al cargar el componente
-    this.$refs.nominforme.focus();
+    // Establecer el foco en el campo de nombre informe al cargar el componente
+    nextTick(() => {
+      this.$refs.nominforme.focus();
+    });
   },
 };
 </script>
@@ -92,5 +124,3 @@ export default {
   color: red; /* Cambia el color del texto a rojo */
 }
 </style>
-
-  
