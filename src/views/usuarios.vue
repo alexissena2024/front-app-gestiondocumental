@@ -56,6 +56,7 @@ export default {
       this.nombre = '';
       this.apellidos = '';
       this.cedula = '';
+      
       //  enfocar el campo de nombre
       this.$refs.nombreInput.focus();
     },
