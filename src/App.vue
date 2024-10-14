@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -27,4 +28,33 @@ import HelloWorld from './components/HelloWorld.vue'
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+=======
+<template>
+  <div id="app">
+    <router-view></router-view> <!-- Aquí se cargan las vistas según la ruta -->
+    <!-- <CountriesList/> -->
+     <UsersRandom />
+  </div>
+</template>
+
+<script>
+ import UsersRandom from './components/UsersRandom.vue';
+// import CountriesList from './components/CountriesList.vue';
+export default {
+  name: 'App',
+
+  components:{
+    // CountriesList
+    UsersRandom
+
+  }
+};
+</script>
+
+
+
+
+<style scoped>
+/* Agrega tus estilos aquí */
+>>>>>>> future/configuration
 </style>
