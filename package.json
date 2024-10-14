@@ -9,7 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "vue": "^3.4.37"
+=======
+    "vue": "^3.4.37",
+    "vue-router": "^4.4.5",
+    "vuex": "^4.1.0"
+>>>>>>> future/configuration
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
