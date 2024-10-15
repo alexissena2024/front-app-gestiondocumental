@@ -8,15 +8,19 @@
         <label>Nombre</label>
         <input type="text" v-model="nombre" ref="nombreInput" class="form-control input-custom" required />
       </div>
+
       <div class="form-group">
         <label>Apellidos</label>
         <input type="text" v-model="apellidos" class="form-control input-custom" required />
       </div>
+
       <div class="form-group">
         <label>Cédula</label>
         <input type="number" v-model="cedula" class="form-control input-custom" required />
       </div>
+
       <button type="submit" class="btn btn-primary">Enviar</button>
+
     </form>
 
     <!-- MOSTRAR MENSAJE DE ÉXITO -->
@@ -67,6 +71,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .text-left {

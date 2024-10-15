@@ -16,9 +16,24 @@ import Memorias from '../views/memorias.vue';
 import Discoduro from '../views/discoduro.vue';
 import Ofimatica from '../views/ofimatica.vue';
 import Antivirus from '../views/antivirus.vue';
+import LayoutMain from '../components/LayoutMain.vue'
+import Login from '../components/Login.vue'
 
 // Definir todas las rutas en un solo arreglo
 const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: LayoutMain,
+  },
+
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+  },
+
+
   {
     path: '/usuarios',
     name: 'Usuarios',

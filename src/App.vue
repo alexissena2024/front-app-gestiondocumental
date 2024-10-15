@@ -2,19 +2,21 @@
   <div id="app">
     <router-view></router-view> <!-- Aquí se cargan las vistas según la ruta -->
     <!-- <CountriesList/> -->
-     <UsersRandom />
+     <!-- <UsersRandom /> -->
+     
   </div>
 </template>
 
 <script>
- import UsersRandom from './components/UsersRandom.vue';
+//  import UsersRandom from './components/UsersRandom.vue';
 // import CountriesList from './components/CountriesList.vue';
+
 export default {
   name: 'App',
 
   components:{
     // CountriesList
-    UsersRandom
+    // UsersRandom
 
   }
 };
