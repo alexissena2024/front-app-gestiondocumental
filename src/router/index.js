@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 
-import Usuarios from '../views/usuarios.vue';
+// import Usuarios from '../views/usuarios.vue';
+import FormUsuarios from '../usuarios/FormUsuarios.vue';
+import FormLogin from '../Login/FormLogin.vue';
+
+
 import Seguridad from '../views/seguridad.vue';
 import Informes from '../views/informes.vue';
 import Colegios from '../views/colegios.vue';
@@ -17,7 +21,10 @@ import Discoduro from '../views/discoduro.vue';
 import Ofimatica from '../views/ofimatica.vue';
 import Antivirus from '../views/antivirus.vue';
 import LayoutMain from '../components/LayoutMain.vue'
-import Login from '../components/Login.vue'
+
+
+
+
 
 // Definir todas las rutas en un solo arreglo
 const routes = [
@@ -30,15 +37,17 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: FormLogin,
   },
 
 
-  {
-    path: '/usuarios',
-    name: 'Usuarios',
-    component: Usuarios,
+{
+   path: '/usuarios',
+  name: 'Usuarios',
+  component: FormUsuarios,
   },
+
+
   {
     path: '/seguridad',
     name: 'Seguridad',

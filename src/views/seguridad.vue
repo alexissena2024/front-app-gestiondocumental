@@ -1,101 +1,97 @@
 <template>
-  <div>
-    
+  <h1>Formulario de Seguridad</h1>
+  <LayoutMain>
+      <template #slotLayout1>
+          <h6>Modulo de Seguridad</h6>
 
-    <div class="container mt-5">
-      <h1 class="text-left text-danger">Página de Seguridad</h1>
+          <el-form :model="form" label-width="150px" class="seguridad-form">
+              <el-form-item label="ID Seguridad">
+                 <el-input v-model="form.id_seguridad" disabled />
+              </el-form-item>
 
-      <h3>Formulario de Registro</h3>
-      <form @submit.prevent="enviarFormulario">
-        <div class="form-group">
-          <label>Cédula</label>
-          <input type="number" v-model="cedula" ref="cedula" class="form-control input-custom" required />
-        </div>
+             <el-form-item label="Cédula">
+                  <el-select v-model="form.cedulaFK" placeholder="cédula"> 
+                  </el-select>
+             </el-form-item>
 
-        <div class="form-group">
-          <label>Contraseña</label>
-          <input type="password" v-model="contraseña" class="form-control input-custom" required />
-        </div>
+              <el-form-item label="Contraseña" required>
+                <el-input
+                        v-model="form.contraseña"
+                        type="password"
+                         placeholder="Ingrese la contraseña"
+                  />
+              </el-form-item>
 
-        <div class="form-group">
-          <label>Restablecer Contraseña</label>
-          <input type="password" v-model="restablecerContraseña" class="form-control input-custom" required />
-        </div>
+              <el-form-item label="Restablecer Contraseña">
+                  <el-input
+                       v-model="form.restablecer_contraseña"
+                       type="password"
+                       placeholder="Ingrese la nueva contraseña"
+                    />
+              </el-form-item>
 
-        <div class="form-group">
-          <label>Políticas</label>
-          <input type="text" v-model="politicas" class="form-control input-custom" required />
-        </div>
+                  <el-form-item label="Políticas de Expiración">
+                     <el-input
+                          v-model="form.politicas_expiracion"
+                          placeholder="Ingrese las políticas de expiración"
+                      />
+                   </el-form-item>
 
-        <div class="form-group">
-          <label>Intentos</label>
-          <input type="number" v-model="bloqueo" class="form-control input-custom" required />
-        </div>
+                     <el-form-item label="Bloqueo de Intentos">
+                                <el-input
+                                 v-model="form.bloqueo_intentos"
+                                type="number"
+                                 placeholder="Ingrese el número de intentos permitidos"
+                                  />
+                       </el-form-item>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
+                   <el-form-item>
+                          <el-button type="primary" @click="submitForm">Guardar</el-button>
+                           <el-button @click="resetForm">Restablecer</el-button>
+                          </el-form-item>
+                   </el-form>
 
-      <!-- MOSTRAR MENSAJE DE ÉXITO -->
-      <p v-if="mensajeExito" class="text-success">Enviado con éxito</p>
-    </div>
-  </div>
+        </template>
+  </LayoutMain>  
 </template>
 
-<script>
-export default {
-  name: 'Seguridad',
-  data() {
-    return {
-      cedula: '',
-      contraseña: '',
-      restablecerContraseña: '',
-      politicas: '',
-      bloqueo: '',
-      mensajeExito: false,
-    };
-  },
-  methods: {
-    enviarFormulario() {
-      console.log('Formulario Enviado');
-      console.log('Cédula:', this.cedula);
-      console.log('Contraseña:', this.contraseña);
-      console.log('Restablecer Contraseña:', this.restablecerContraseña);
-      console.log('Políticas:', this.politicas);
-      console.log('Intentos de Bloqueo:', this.bloqueo);
+<script lang="ts" setup>
+import { ref } from 'vue';
+import LayoutMain from '../components/LayoutMain.vue';
 
-      this.mensajeExito = true;
+// Aquí se cargaran  los datos de los usuarios
 
-      // Limpia los campos después de enviar el formulario
-      this.limpiarCampos();
 
-      // Ocultar el mensaje después de 3 segundos
-      setTimeout(() => {
-        this.mensajeExito = false;
-      }, 3000);
-    },
-    limpiarCampos() {
-      this.cedula = '';
-      this.contraseña = '';
-      this.restablecerContraseña = '';
-      this.politicas = '';
-      this.bloqueo = '';
-      // Enfocar el campo de cédula
-      this.$refs.cedula.focus();
-    },
-  },
-  mounted() {
-    // Establecer el foco en el campo de cédula al cargar el componente
-    this.$refs.cedula.focus();
-  },
+const form = ref({
+  id_seguridad: null, // Este campo se debe llenar según sea necesario
+  cedulaFK: '',
+  contraseña: '',
+  restablecer_contraseña: '',
+  politicas_expiracion: '',
+  bloqueo_intentos: 0,
+});
+
+// Función para enviar el formulario
+const submitForm = () => {
+  console.log('Formulario enviado:', form.value);
+  // Aquí se  agregara la lógica para enviar los datos al servidor
+};
+
+// Función para restablecer el formulario
+const resetForm = () => {
+  form.value = {
+    id_seguridad: null,
+    cedulaFK: '',
+    contraseña: '',
+    restablecer_contraseña: '',
+    politicas_expiracion: '',
+    bloqueo_intentos: 0,
+  };
 };
 </script>
 
 <style scoped>
-.text-left {
-  text-align: left; /* Alinea el texto a la izquierda */
-}
-
-.text-danger {
-  color: red; /* Cambia el color del texto a rojo */
+.seguridad-form {
+  max-width: 600px; /* ANCHO DEL FORMULARIO*/
 }
 </style>

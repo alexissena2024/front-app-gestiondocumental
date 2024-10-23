@@ -1,29 +1,44 @@
 <template>
-    <div class="navbar-container">
+  <el-container style="height: 100vh;">
+    <el-header>
       <NavBar />
-    </div>
-  </template>
-  
-  <script setup>
-  import NavBar from './NavBar.vue';
-  </script>
-  
-  <style scoped>
-  .navbar-container {
-    display: flex;               /* Usar flexbox para el alineamiento */
-    justify-content: flex-start; /* Alineación a la izquierda */
-    align-items: flex-start;     /* Alineación en la parte superior */
-    padding: 0;                  /* Eliminar padding */
-    margin: 0;                   /* Eliminar margen */
-    margin-left: -680px; 
-    margin-top:-50px;         /* Mover el contenedor hacia la izquierda (ajusta el valor según sea necesario) */
-    height: 100vh;               /* Ocupa toda la altura de la vista */
-    box-sizing: border-box;      /* Incluir padding y border en el tamaño total */
-  }
-  </style>
-  
- 
- 
- 
- 
- 
+    </el-header>
+
+    <el-container>
+      <el-aside width="400px">
+        <!-- Contenido del aside -->
+      </el-aside>
+
+      <el-main class="main-container">
+        <slot name="slotLayout1"></slot>
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<script setup>
+import NavBar from './NavBar.vue';
+</script>
+
+<style scoped>
+.el-container {
+  display: flex;
+  flex-direction: column;  /* Asegura que el header esté en la parte superior */
+}
+
+.el-header {
+  display: flex;
+  justify-content: flex-start; /* Alineación del header a la izquierda */
+  padding: 0;
+  margin:0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: flex-start; /* Alineación del contenido a la izquierda */
+  align-items: flex-start;     /* Alineación en la parte superior */
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+}
+</style>
