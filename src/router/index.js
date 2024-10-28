@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 
-// import Usuarios from '../views/usuarios.vue';
-import FormUsuarios from '../usuarios/FormUsuarios.vue';
-import FormLogin from '../Login/FormLogin.vue';
+
 
 
 import Seguridad from '../views/seguridad.vue';
@@ -20,9 +18,14 @@ import Memorias from '../views/memorias.vue';
 import Discoduro from '../views/discoduro.vue';
 import Ofimatica from '../views/ofimatica.vue';
 import Antivirus from '../views/antivirus.vue';
+
+//Estos son losn nuevos componente almacenados en carpetas*************
+import FormLogin from '../Login/FormLogin.vue';
 import LayoutMain from '../components/LayoutMain.vue'
-
-
+import FormUsuarios from '../usuarios/FormUsuarios.vue';
+import SelectorCargos from '../cargos/SelectorCargos.vue';
+import FormSeguridad from '../seguridad/FormSeguridad.vue';
+import UsuariosDexon from '../components/PruebaSlot/UsuariosDexon.vue';
 
 
 
@@ -35,12 +38,35 @@ const routes = [
   },
 
   {
+    path: '/cargos',
+    name: 'cargos',
+    component: SelectorCargos,
+  },
+
+
+  {
+    path: '/forseguridad',
+    name: 'forseguridad',
+    component: FormSeguridad,
+  },
+
+
+  {
+    path: '/dexon',
+    name: 'dexon',
+    component: UsuariosDexon,
+  },
+
+
+
+  {
     path: '/login',
     name: 'login',
     component: FormLogin,
   },
 
 
+ 
 {
    path: '/usuarios',
   name: 'Usuarios',
