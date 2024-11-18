@@ -1,4 +1,3 @@
-
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 </script>
@@ -11,8 +10,9 @@ import HelloWorld from './components/HelloWorld.vue'
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
+    <HelloWorld msg="Vite + Vue" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <router-view></router-view>
 </template>
 
 <style scoped>
@@ -28,11 +28,5 @@ import HelloWorld from './components/HelloWorld.vue'
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
-=======
-<template>
-  <router-view></router-view>
-</template>
-
-<style scoped>
 /* Agrega tus estilos aquí */
 </style>
