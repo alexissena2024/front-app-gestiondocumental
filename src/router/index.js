@@ -1,109 +1,123 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router'
+import Paises from '../views/paises/paises.vue'
+import LayoutMain from '../components/LayoutMain.vue'
+import Login from '../components/Login.vue'
+import Usuarios from '../views/usuarios/usuarios.vue'
+import informes from '../views/informes/informes.vue'
+import colegios from '../views/colegios/colegios.vue'
+import salaSistemas from '../views/salaSistemas/salasistemas.vue'
+import localidad from '../views/localidad/localidad.vue'
+import sede from '../views/sede/sede.vue'
+import dependencia from '../views/dependencia/dependencia.vue'
+import cargos from '../views/cargos/cargos.vue'
+import marcas from '../views/marcas/marcas.vue'
+import modelos from '../views/modelos/modelos.vue'
+import memorias from '../views/memorias/memorias.vue'
+import discos from '../views/discos/discos.vue'
+import ofimatica from '../views/ofimatica/ofimatica.vue'
+import antivirus from '../views/antivirus/antivirus.vue'
+const routes =[
+
+{
+    path:'/',
+    name:'home',
+    component:LayoutMain,
+},
+{
+    path:'/login',
+    name:'login',
+    component:Login,
+},
+
+{
+    path:'/cargos',
+    name:'cargos',
+    component:cargos,
+},
+{
+    path:'/pais',
+    name:'Paises',
+    component: Paises,
+},
 
 
-import Usuarios from '../views/usuarios.vue';
-import Seguridad from '../views/seguridad.vue';
-import Informes from '../views/informes.vue';
-import Colegios from '../views/colegios.vue';
-import Acciones from '../views/acciones.vue'; 
-import SalaSistemas from '../views/salasistemas.vue'; 
-import Localidad from '../views/localidad.vue';
-import Sede from '../views/sede.vue';
-import Dependencia from '../views/dependencia.vue';
-import Marca from '../views/marca.vue';
-import Modelos from '../views/modelos.vue';
-import Memorias from '../views/memorias.vue';
-import Discoduro from '../views/discoduro.vue';
-import Ofimatica from '../views/ofimatica.vue';
-import Antivirus from '../views/antivirus.vue';
-
-// Definir todas las rutas en un solo arreglo
-const routes = [
-  {
-    path: '/usuarios',
-    name: 'Usuarios',
+{
+    path:'/usuarios',
+    name:'Usuarios',
     component: Usuarios,
-  },
-  {
-    path: '/seguridad',
-    name: 'Seguridad',
-    component: Seguridad,
-  },
-  {
-    path: '/informes',
-    name: 'Informes',
-    component: Informes,
-  },
-  {
-    path: '/acciones',
-    name: 'Acciones',
-    component: Acciones,
-  },
-  {
-    path: '/colegios',
-    name: 'Colegios',
-    component: Colegios,
-  },
-  {
-    path: '/salasistemas',
-    name: 'SalaSistemas',
-    component: SalaSistemas,
-  },
-  {
-    path: '/localidad',
-    name: 'Localidad',
-    component: Localidad,
-  },
-  {
-    path: '/sede',
-    name: 'Sede',
-    component: Sede,
-  },
-  {
-    path: '/dependencia',
-    name: 'Dependencia',
-    component: Dependencia,
-  },
-  {
-    path: '/marca',
-    name: 'Marca',
-    component: Marca,
-  },
-  {
-    path: '/modelos',
-    name: 'Modelos',
-    component: Modelos,
-  },
-  {
-    path: '/memorias',
-    name: 'Memorias',
-    component: Memorias,
-  },
+},
 
-  {
-    path: '/discoduro',
-    name: 'Discoduro',
-    component: Discoduro,
-  },
+{
+    path:'/colegios',
+    name:'Colegio',
+    component: colegios,
+},
 
-  {
-    path: '/ofimatica',
-    name: 'Ofimatica',
-    component: Ofimatica,
-  },
+{
+    path:'/salasistemas',
+    name:'Salasistemas',
+    component: salaSistemas,
+},
 
-  {
-    path: '/antivirus',
-    name: 'Antivirus',
-    component: Antivirus,
-  },
-];
+{
+    path:'/localidad',
+    name:'Localidad',
+    component: localidad,
+},
 
-// Crear el router con las rutas combinadas
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+{
+    path:'/sede',
+    name:'Sede',
+    component: sede,
+},
 
-// Exportar el router para su uso en la aplicación
+
+{
+    path:'/dependencia',
+    name:'Dependencia',
+    component: dependencia,
+},
+
+{
+    path:'/marcas',
+    name:'Marcas',
+    component: marcas,
+},
+{
+    path:'/modelos',
+    name:'Modelos',
+    component: modelos,
+},
+{
+    path:'/memorias',
+    name:'Memorias',
+    component: memorias,
+},
+
+{
+    path:'/discos',
+    name:'Discos',
+    component: discos,
+},
+{
+    path:'/ofimatica',
+    name:'Ofimatica',
+    component: ofimatica,
+},
+
+{
+    path:'/antivirus',
+    name:'Antivirus',
+    component: antivirus,
+},
+
+
+
+]
+
+const router= createRouter({
+    history:createWebHistory(),
+    routes,
+})
+
 export default router;
