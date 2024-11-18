@@ -1,5 +1,5 @@
 {
-  "name": "app-gestiondocumental",
+  "name": "app-adso",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,16 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "vue": "^3.4.37"
-=======
+    "axios": "^1.7.7",
+    "element-plus": "^2.8.5",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5",
     "vuex": "^4.1.0"
->>>>>>> future/configuration
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
-    "vite": "^5.4.1"
+    "vite": "^5.4.10"
   }
 }
