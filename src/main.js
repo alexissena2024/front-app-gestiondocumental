@@ -1,8 +1,10 @@
  import { createApp } from 'vue';
+ import ElementPlus from 'element-plus'
+ import 'element-plus/dist/index.css'
  import './style.css';
  import App from './App.vue'; // Importa el componente App
  import router from './router'; // Importa el enrutador
-import ElementPlus from 'element-plus'
+
  
 
 const app = createApp(App); // Debes pasar el componente App
