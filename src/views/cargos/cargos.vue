@@ -1,7 +1,7 @@
 <template>
   <LayoutMain>
     <template #slotLayout>
-      <Header :titulo="'Cargos'" :tituloBoton="'Crear Cargo'" :abrir="abrirFormulario" />
+      <Header :titulo="'Cargos'" :tituloBoton="'Crear Cargos deployd'" :abrir="abrirFormulario" />
 
       <Formulario :titulo="'Gestión de Cargos'" v-model:is-open="mostrarFormulario" :is-edit="editandoFormulario"
                   @save="guardarDatos" @update="actualizarDatos">
