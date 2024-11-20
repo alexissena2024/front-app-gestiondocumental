@@ -6,6 +6,10 @@
     label-width="auto"
     :size="formSize" 
     status-icon>
+
+     <el-form-item label="Cédula" prop="cedula">
+      <el-input v-model="formulario.cedula" />
+    </el-form-item>
     
     <el-form-item label="Nombre" prop="nombre">
       <el-input v-model="formulario.nombre" />
@@ -19,9 +23,7 @@
       <el-input v-model="formulario.apellPat"/>
     </el-form-item>
 
-    <el-form-item label="Cédula" prop="cedula">
-      <el-input v-model="formulario.cedula" />
-    </el-form-item>
+   
   
   </el-form>
 </template>
@@ -37,23 +39,25 @@ import { reactive, ref, watch, defineProps, defineExpose } from 'vue';
 const formSize = ref('default');
 const formRef = ref(null);
 const formulario = reactive({
-  nombre: '',
+  cedula: '',
+ nombre: '',
   apellMat: '',
   apellPat: '',
-  cedula: '',
 });
 
 const rulesForm = reactive({
+  cedula: [{ required: true, message: 'Por favor ingrese su', trigger: 'blur' }],
   nombre: [{ required: true, message: 'Por favor ingrese un nombre', trigger: 'blur' }],
   apellMat: [{ required: true, message: 'Por favor ingrese un apellido Materno', trigger: 'blur' }],
   apellPat: [{ required: true, message: 'Por favor ingrese un apellido Paterno', trigger: 'blur' }],
-  cedula: [{ required: true, message: 'Por favor ingrese su', trigger: 'blur' }],
+  
 });
 
 const datosFormulario = () => {
-  formulario.cargo = dataValue?.cargo || '';
-  formulario.salario = dataValue?.salario || '';
-  formulario.area = dataValue?.id_area || '';
+  formulario.cedula = dataValue?.cedula || '';
+  formulario.nombre = dataValue?.nombre || '';
+  formulario.apellMat = dataValue?.apellMat || '';
+  formulario.apellPat = dataValue?.apellPat || '';
 };
 
 watch(() => dataValue, datosFormulario);
