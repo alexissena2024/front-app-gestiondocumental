@@ -1,68 +1,95 @@
 <template>
-  <el-form 
-    ref="formRef" 
-    :model="formulario"
-    :rules="rulesForm" 
-    label-width="auto"
-    :size="formSize" 
-    status-icon>
-    
+  <el-form ref="formRef" :model="formulario" :rules="rulesForm" label-width="auto" :size="formSize" status-icon>
     <el-form-item label="Nombre" prop="nombre">
       <el-input v-model="formulario.nombre" />
     </el-form-item>
-    
-    <el-form-item label="Apellido Materno" prop="apellMat">
-      <el-input v-model="formulario.apellMat" />
+
+    <el-form-item label="Apellido Materno" prop="apellidoMat">
+      <el-input v-model="formulario.apellidoMat" />
     </el-form-item>
-    
-    <el-form-item label="Apellido Paterno" prop="apellPat">
-      <el-input v-model="formulario.apellPat"/>
+
+    <el-form-item label="Apellido Paterno" prop="apellidoPat">
+      <el-input v-model="formulario.apellidoPat" />
     </el-form-item>
 
     <el-form-item label="Cédula" prop="cedula">
       <el-input v-model="formulario.cedula" />
     </el-form-item>
-  
   </el-form>
 </template>
 
 <script setup>
-import { reactive, ref, watch, defineProps, defineExpose } from 'vue';
+import { onMounted, reactive, ref, watch } from 'vue'
+import Usuarios from '../usuarios.vue';
 
- const { areas, dataValue } = defineProps({
-  areas: Array,
-  dataValue: Object,
- });
+const props = defineProps({
+  nombre: { type: String, default: '' },
+  apellidoMat: { type: String, default: '' },
+  apellidoPat: { type: String, default: '' },
+  cedula: { type: String, default: '' },
 
-const formSize = ref('default');
-const formRef = ref(null);
+  Usuarios: { 
+    type: Array, 
+    required: true 
+  },
+  dataValue: { type: Object, default: () => ({}) },
+})
+
+const formSize = ref('default')
+const formRef = ref()
 const formulario = reactive({
   nombre: '',
-  apellMat: '',
-  apellPat: '',
+  apellidoMat: '',
+  apellidoPat: '',
   cedula: '',
-});
+})
 
+// Función para cargar los datos en el formulario
+const cargarDatosFormulario = () => {
+  if (props.dataValue) {
+    formulario.nombre = props.dataValue.nombre || ''
+    formulario.apellidoMat = props.dataValue.apellidoMat || ''
+    formulario.apellidoPat = props.dataValue.apellidoPat || ''
+    formulario.cedula = props.dataValue.cedula || ''
+  }
+}
+
+// Reglas de validación
 const rulesForm = reactive({
-  nombre: [{ required: true, message: 'Por favor ingrese un nombre', trigger: 'blur' }],
-  apellMat: [{ required: true, message: 'Por favor ingrese un apellido Materno', trigger: 'blur' }],
-  apellPat: [{ required: true, message: 'Por favor ingrese un apellido Paterno', trigger: 'blur' }],
-  cedula: [{ required: true, message: 'Por favor ingrese su', trigger: 'blur' }],
-});
+  nombre: [{ required: true, message: 'Por favor ingrese el nombre', trigger: 'blur' }],
+  apellidoMat: [{ required: true, message: 'Ingrese el apellido materno', trigger: 'blur' }],
+  apellidoPat: [{ required: true, message: 'Ingrese el apellido paterno', trigger: 'blur' }],
+  cedula: [{ required: true, message: 'Ingrese la cédula', trigger: 'blur' }],
+})
 
-const datosFormulario = () => {
-  formulario.cargo = dataValue?.cargo || '';
-  formulario.salario = dataValue?.salario || '';
-  formulario.area = dataValue?.id_area || '';
-};
+// Función para limpiar el formulario
+const limpiarFormulario = () => {
+  formRef.value?.resetFields()
+}
 
-watch(() => dataValue, datosFormulario);
+// Función para validar el formulario
+const validarFormulario = () => {
+  return new Promise((resolve) => {
+    formRef.value?.validate((valid) => {
+      if (valid) {
+        resolve(true)
+      } else {
+        resolve(false)
+      }
+    })
+  })
+}
 
-defineExpose({
-  formulario,
-  validarFormulario: () => formRef.value?.validate(),
-  limpiarFormulario: () => formRef.value?.resetFields(),
-});
+// Observador para detectar cambios en dataValue y cargar los datos
+watch(
+  () => props.dataValue,
+  () => {
+    cargarDatosFormulario()
+  }
+)
+
+// Exponer métodos para usarlos en el componente principal
+defineExpose({ validarFormulario, formulario, limpiarFormulario })
 </script>
 
 <style scoped></style>
