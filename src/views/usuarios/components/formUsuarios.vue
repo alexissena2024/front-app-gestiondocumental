@@ -7,20 +7,18 @@
     :size="formSize" 
     status-icon>
 
-     <el-form-item label="Cédula" prop="cedula">
-      <el-input v-model="formulario.cedula" />
-    </el-form-item>
+    
     
     <el-form-item label="Nombre" prop="nombre">
       <el-input v-model="formulario.nombre" />
     </el-form-item>
 
-    <el-form-item label="Apellido Materno" prop="apellidoMat">
-      <el-input v-model="formulario.apellidoMat" />
+    <el-form-item label="Apellido Materno" prop="apellMat">
+      <el-input v-model="formulario.apellMat" />
     </el-form-item>
 
-    <el-form-item label="Apellido Paterno" prop="apellidoPat">
-      <el-input v-model="formulario.apellidoPat" />
+    <el-form-item label="Apellido Paterno" prop="apellPat">
+      <el-input v-model="formulario.apellPat" />
     </el-form-item>
 
     <el-form-item label="Cédula" prop="cedula">
@@ -36,13 +34,13 @@ import Usuarios from '../usuarios.vue';
 
 const props = defineProps({
   nombre: { type: String, default: '' },
-  apellidoMat: { type: String, default: '' },
-  apellidoPat: { type: String, default: '' },
+  apellMat: { type: String, default: '' },
+  apellPat: { type: String, default: '' },
   cedula: { type: String, default: '' },
 
   Usuarios: { 
     type: Array, 
-    required: true 
+    
   },
   dataValue: { type: Object, default: () => ({}) },
 })
@@ -60,16 +58,16 @@ const rulesForm = reactive({
   nombre: [{ required: true, message: 'Por favor ingrese un nombre', trigger: 'blur' }],
   apellMat: [{ required: true, message: 'Por favor ingrese un apellido Materno', trigger: 'blur' }],
   apellPat: [{ required: true, message: 'Por favor ingrese un apellido Paterno', trigger: 'blur' }],
-  cedula: [{ required: true, message: 'Por favor ingrese su', trigger: 'blur' }],
+  cedula: [{ required: true, message: 'Por favor ingrese su cedula', trigger: 'blur' }],
 });
 
 const datosFormulario = () => {
-  formulario.cargo = dataValue?.cargo || '';
-  formulario.salario = dataValue?.salario || '';
-  formulario.area = dataValue?.id_area || '';
+  formulario.nombre = props.dataValue?.nombre || '';
+  formulario.apellMat = props.dataValue?.apellMat || '';
+  formulario.apellPat = props.dataValue?.apellPat || '';
+  formulario.cedula = props.dataValue?.cedula || '';
 };
-
-watch(() => dataValue, datosFormulario);
+watch(() => props.dataValue, datosFormulario);
 
 defineExpose({
   formulario,

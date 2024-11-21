@@ -20,8 +20,8 @@
 
       <el-table :data="usuarios" stripe style="width: 100%">
         <el-table-column prop="nombre" label="Nombre" />
-        <el-table-column prop="apellidoMat" label="Apellido Materno" />
-        <el-table-column prop="apellidoPat" label="Apellido Paterno" />
+        <el-table-column prop="apellMat" label="Apellido Materno" />
+        <el-table-column prop="apellPat" label="Apellido Paterno" />
         <el-table-column prop="cedula" label="Cédula" />
         <el-table-column fixed="right" label="Acciones" min-width="120">
 
@@ -51,11 +51,11 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import axios from 'axios';
 import FormUsuarios from './components/formUsuarios.vue';
 
-const mostrarFormulario = ref(false)
-const editandoFormulario = ref(false)
-const formRef = ref()
+const mostrarFormulario = ref(false);
+const editandoFormulario = ref(false);
+const formRef = ref();
 const usuarios = ref([]); // Lista de usuarios
-const dataUsuariosById = ref(); // Detalle de un usuario por ID
+const dataUsuariosById = ref({}); // Detalle de un usuario por ID (valor inicial vacío)
 
 // const areas = ref([])
 // const cargos = ref([])
@@ -66,33 +66,42 @@ const abrirFormulario = () => {
 }
 
 const editarFormulario = async (id) => {
+  dataUsuariosById.value = await datosById(id);
+  if (dataUsuariosById.value) {
+    mostrarFormulario.value = true;
+    editandoFormulario.value = true;
+  } else {
+    ElMessage({ type: 'error', message: 'Error al cargar los datos del usuario.' });
+  }
+};
 
-  dataUsuariosById.value = await datosById(id)
-  mostrarFormulario.value = true
-  editandoFormulario.value = true
-}
-
+// Crear un nuevo usuario
 const guardarDatos = async () => {
-  // alert("ESTOY AQUI")
-  const validacion = await formRef.value?.validarFormulario()
+  const validacion = await formRef.value?.validarFormulario();
   if (validacion) {
-    await crearUsuario()
+    await crearUsuario();
   }
-}
+};
 
+
+// Actualizar un usuario existente
 const actualizarDatos = async () => {
-  const validacion = await formRef.value?.validarFormulario()
+  const validacion = await formRef.value?.validarFormulario();
   if (validacion) {
-    await actualizarCargo()
+    await actualizarUsuario();
   }
-}
+};
 
 const crearUsuario = async () => {
   
-  const url = 'http://127.0.0.1:8000/api/usuario/save'
+
+   const url = 'http://127.0.0.1:8000/api/usuario/save'
   const dataFormulario = formRef.value.formulario // Accedemos a los datos expuestos en forusuarios
+  console.log("Datos enviados al servidor:", dataFormulario);
   try {
-    await axios.post(url, dataFormulario)
+   const response= await axios.post(url, dataFormulario)
+   console.log('Respuesta del servidor:', response.data);
+
     formRef.value?.limpiarFormulario()
     ElMessage({ message: 'El usuario se creó con éxito.', type: 'success' })
     datosUsuario()
@@ -102,21 +111,20 @@ const crearUsuario = async () => {
   }
 }
 
-const actualizarCargo = async () => {
+const actualizarUsuario = async () => {
   
 
-  const url = `http://127.0.0.1:8000/api/usuario/actualizar`;
+  const url = `http://127.0.0.1:8000/api/usuario/update`;
   const dataFormulario = {
     id: dataUsuariosById.value[0].id,
     nombre: formRef.value.formulario.nombre,
-    apellidoMat: formRef.value.formulario.apellidoMat,
-    apellidoPat: formRef.value.formulario.apellidoPat,
+    apellMat: formRef.value.formulario.apellMat,
+    apellPat: formRef.value.formulario.apellPat,
     cedula: formRef.value.formulario.cedula,
     
   };
   
-  
-  
+
   try {
     const response = await axios.put(url, dataFormulario);
     console.log(response);
@@ -148,7 +156,7 @@ const datosById = async (id) => {
 
 const eliminarUsuario = async (id) => {
   const url = `http://127.0.0.1:8000/api/usuario/delete/${id}`;// ${id} es el id de la tabla USUARIO  donde esta cada registro 
-  ElMessageBox.confirm('¿Está seguro de eliminar el cargo?', 'Eliminar Registro', {
+  ElMessageBox.confirm('¿Está seguro de eliminar el Usuario?', 'Eliminar Registro', {
     confirmButtonText: 'SI',
     cancelButtonText: 'Cancelar',
     type: 'error',
