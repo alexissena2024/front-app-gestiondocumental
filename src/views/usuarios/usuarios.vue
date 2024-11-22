@@ -18,10 +18,11 @@
         </template>
       </Formulario>
 
+        <!--los props deben ser iguales a como estan definidos en el formularios.vue-->
       <el-table :data="usuarios" stripe style="width: 100%">
         <el-table-column prop="nombre" label="Nombre" />
-        <el-table-column prop="apellMat" label="Apellido Materno" />
-        <el-table-column prop="apellPat" label="Apellido Paterno" />
+        <el-table-column prop="apellido_materno" label="Apellido Materno" />
+        <el-table-column prop="apellido_paterno" label="Apellido Paterno" />
         <el-table-column prop="cedula" label="Cédula" />
         <el-table-column fixed="right" label="Acciones" min-width="120">
 
@@ -66,6 +67,7 @@ const abrirFormulario = () => {
 }
 
 const editarFormulario = async (id) => {
+ 
   dataUsuariosById.value = await datosById(id);
   if (dataUsuariosById.value) {
     mostrarFormulario.value = true;
@@ -117,10 +119,10 @@ const actualizarUsuario = async () => {
   const url = `http://127.0.0.1:8000/api/usuario/update`;
   const dataFormulario = {
     id: dataUsuariosById.value[0].id,
-    nombre: formRef.value.formulario.nombre,
-    apellMat: formRef.value.formulario.apellMat,
-    apellPat: formRef.value.formulario.apellPat,
-    cedula: formRef.value.formulario.cedula,
+    nombre: formRef.value.formulario.nombre, // este campo debe ser igual como esta definido en el prop de la tabla :data="usuarios"
+    apellido_materno: formRef.value.formulario.apellido_materno, // este campo debe ser igual como esta definido en el prop de la tabla :data="usuarios"
+    apellido_paterno: formRef.value.formulario.apellido_paterno, // este campo debe ser igual como esta definido en el prop de la tabla :data="usuarios"
+    cedula: formRef.value.formulario.cedula, // este campo debe ser igual como esta definido en el prop de la tabla :data="usuarios"
     
   };
   
@@ -139,7 +141,7 @@ const actualizarUsuario = async () => {
 
 
 const datosById = async (id) => {
-  const url = 'http://127.0.0.1:8000/api/usuario/datosById/';
+  const url = 'http://127.0.0.1:8000/api/usuario/datosById';
   
   try {
     const response = await axios.get(url, {
