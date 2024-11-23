@@ -56,6 +56,7 @@ const formulario = reactive({
 
 
 const cargarDatosFormulario = () => {
+  //Trae todos los campos del formulario cuando se da CLICK en EDITAR*******
   {
     formulario.nombre = props.dataValue[0].nombre
     formulario.apellido_materno = props.dataValue[0].apellido_materno
