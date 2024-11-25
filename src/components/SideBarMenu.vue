@@ -1,7 +1,7 @@
 <template>
 
         <el-menu
-        :default-active="$route.path"
+        :default-active="$router.path"
         router
           class="el-menu-vertical-demo"
           background-color="#242629"
@@ -17,11 +17,11 @@
             <el-menu-item index="personas">Personas</el-menu-item>
             <el-menu-item index="cargos">Cargos</el-menu-item>
             <el-menu-item index="usuarios">Usuarios</el-menu-item>
-            <el-menu-item index="pais">Paises</el-menu-item>
-            <el-menu-item index="informes">Informes</el-menu-item>
+            <el-menu-item index="pais">Paises</el-menu-item>  
             <el-menu-item index="colegios">Colegios</el-menu-item>
             <el-menu-item index="salasistemas">salaSistemas</el-menu-item>
             <el-menu-item index="localidad">Localidad</el-menu-item>
+            <el-menu-item index="informes">Informes</el-menu-item>
             <el-menu-item index="sede">Sedes</el-menu-item>
             <el-menu-item index="dependencia">Dependencia</el-menu-item>
             <el-menu-item index="marcas">Marcas</el-menu-item>
